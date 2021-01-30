@@ -1,0 +1,57 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 426px;
+ background-image: url(assets/imagenes/clima.jpg); background-size: cover; background-position: center top;">
+  <span class="mask opacity-6"></span>
+
+  <div class="card-body align-items-end justify-content-end">
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-4 col-sm-12 col-xs-12" *ngFor="let weather of weatherList">
+          <div class="card p-4" style="margin: 10px">
+            <div class="d-flex">
+              <h3 class="flex-grow-1">{{weather.city}}</h3>
+            </div>
+            <div class="d-flex flex-column temp mt-5 mb-3">
+              <h1 class="mb-0 font-weight-bold" id="heading">
+                <span *ngIf="weather.theCityExists">{{weather.temperature}}° C</span>
+                <span *ngIf="!weather.theCityExists"><i class="fas fa-sad-tear"></i></span>
+              </h1>
+              <span
+                class="small grey">{{weather.theCityExists ? ("Características") : ('No existe información de la ciudad ingresada')}}</span>
+            </div>
+            <div class="d-flex">
+              <div class="temp-details flex-grow-1">
+                <p class="my-1"><img src="https://i.imgur.com/B9kqOzp.png" height="17px">
+                  <span *ngIf="weather.theCityExists"> {{weather.windSpeed}}km/h </span>
+                  <span *ngIf="!weather.theCityExists"><i class="fas fa-frown-open"
+                                                          style="margin-left: 5px;"></i></span>
+                </p>
+                <p class="my-1"><i class="fa fa-tint mr-2" aria-hidden="true"></i>
+                  <span *ngIf="weather.theCityExists"> {{weather.humidity}}% </span>
+                  <span *ngIf="!weather.theCityExists"><i class="fas fa-frown-open"
+                                                          style="margin-left: 3px;"></i></span>
+                </p>
+                <p class="my-1"><i class="fa fa-cloud" aria-hidden="true" style="font-size: 15px;"></i>
+                  <span *ngIf="weather.theCityExists"> {{weather.cloudsNumber}} </span>
+                  <span *ngIf="!weather.theCityExists"><i class="fas fa-frown-open"
+                                                          style="margin-left: 3px;"></i></span>
+                </p>
+              </div>
+              <div><img src="https://i.imgur.com/Qw7npIg.png" width="100px"></div>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="user.idSuscripcion === null">
+          <h1 style="color: white">Debe realizar una suscripción para poder ver los climas</h1>
+        </div>
+
+        <div *ngIf="weatherList != null && weatherList.length === 0">
+          <h1 style="color: white">Debe seleccionar las ciudades que desea ver sus climas</h1>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
